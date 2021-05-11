@@ -3,6 +3,11 @@ Assignment submissions from the END2.0 program. Deep NLP with RNNs/LSTMs, Attent
 
 ## [Session 1: Background & Very Basics](Session_01)
 
-Assignment - 
 1. Rewrite Google Colab file with the specified changes. 
 2. Answer questions on the basics of neural networks.
+
+## [Session 2: BackProp, Embeddings and Language Models ](Session_02)
+
+1. Train a neural network on excel sheet with all the backpropagation calculations involved.
+
+
