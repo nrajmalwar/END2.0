@@ -13,7 +13,7 @@
 ## Training the Neural Network
 ![](./static/Backprop_2.JPG)
 
-## Loss vs. Iterations
+## Loss vs. Iterations Graphs
 <img src="./static/individual_graphs.png" width="1000"/>
 <img src="./static/range_of_LR.png" width="500"/>
 
