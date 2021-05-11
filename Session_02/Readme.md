@@ -15,3 +15,9 @@
 ## Training the Neural Network
 
 ![](https://github.com/nrajmalwar/END2.0/blob/main/Session_02/static/Backprop_2.JPG)
+
+## Loss vs. Iterations
+
+![](https://github.com/nrajmalwar/END2.0/blob/main/Session_02/static/individual_graphs.png)
+
+![](https://github.com/nrajmalwar/END2.0/blob/main/Session_02/static/range_of_LR.png)
