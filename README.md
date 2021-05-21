@@ -3,11 +3,21 @@ Assignment submissions from the END2.0 program. Deep NLP with RNNs/LSTMs, Attent
 
 ## [Session 1: Background & Very Basics](Session_01)
 
-1. Rewrite Google Colab file with the specified changes. 
-2. Answer questions on the basics of neural networks.
+* Rewrite Google Colab file with the specified changes
+* Answer questions on the basics of neural networks
 
 ## [Session 2: BackProp, Embeddings and Language Models ](Session_02)
 
-1. Train a neural network on excel sheet with all the backpropagation calculations involved.
+* Train a neural network on excel sheet with all the backpropagation calculations involved
+
+## [Session 3: Pytorch](Session_03)
+
+Write a neural network that takes two inputs
+* an image from MNIST dataset
+* a random number between 0 and 9
+
+and gives the output
+* the "number" that was represented by the MNIST image
+* the "sum" of this number with the random number that was generated and sent as the input to the network
 
 
