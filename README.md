@@ -20,4 +20,6 @@ and gives the output
 * the "number" that was represented by the MNIST image
 * the "sum" of this number with the random number that was generated and sent as the input to the network
 
+## [Session 4: RNNs and LSTMs](Session_04)
 
+* Train a simple classification network on the IMDb dataset using LSTM
