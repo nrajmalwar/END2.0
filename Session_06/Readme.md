@@ -95,13 +95,13 @@ class Model(nn.Module):
 
   def forward(self, text, text_length, packed=False, debug=False, print_outputs=False):
 
-    text, hidden_states = self.encoder(text,
+    encoding, hidden_states = self.encoder(text,
                                        text_length,
                                        packed=packed,
                                        debug=debug,
                                        print_outputs=print_outputs)
     
-    output = self.decoder(text,
+    output = self.decoder(encoding,
                           hidden_states,
                           debug=debug,
                           print_outputs=print_outputs)
