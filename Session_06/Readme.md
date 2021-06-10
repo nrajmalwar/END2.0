@@ -197,4 +197,4 @@ Hidden shape:  torch.Size([1, 1, 25])
 Cell shape:  torch.Size([1, 1, 25])
 Dense outputs shape:  torch.Size([1, 3])
 ```
-<img src="./static/decodings.png" width=800>
+<img src="./static/decodings.png" width=600>
