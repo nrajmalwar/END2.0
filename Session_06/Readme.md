@@ -1,3 +1,5 @@
+Group Members: Nishad, Soma, Bharath, Dinesh
+
 # Encoder-Decoder Architecture for Classification on Tweets dataset
 
 The objective to build a model with simple encoder-decoder architecture for classification and visualize the encoding and decoding vectors at each hidden step.
