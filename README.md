@@ -27,4 +27,4 @@ and gives the output
 ## [Session 6: GRUs, Seq2Seq and Introduction to Attention Mechanism ](Session_06)
 
 * Train a classification model for the tweets dataset using the encoder-decoder architecture
-* Visualize the encoding and decoding vector at each time step
+* Visualize the encoding and decoding vectors at each time step
