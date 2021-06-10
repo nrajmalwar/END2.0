@@ -187,7 +187,7 @@ Encoding shape:  torch.Size([1, 1, 25])
 ```
 <img src="./static/encodings.png" width=1000>
 
-# Decoder Shapes and Vectors
+### Decoder Shapes and Vectors
 ```
 Before entering decoder
 Input shape:  torch.Size([1, 1, 25])
@@ -198,3 +198,25 @@ Cell shape:  torch.Size([1, 1, 25])
 Dense outputs shape:  torch.Size([1, 3])
 ```
 <img src="./static/decodings.png" width=600>
+
+### Encoder-Decoder shapes for a random batch
+```
+Before entering embedding layer
+Text shape:  torch.Size([32, 40])
+Text length shape:  torch.Size([32])
+Text length:  tensor([40, 40, 37, 37, 37, 35, 34, 34, 34, 33, 33, 33, 33, 33, 32, 32, 32, 32,
+        31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 31, 30, 30, 30])
+Embedding shape:  torch.Size([32, 40, 256])
+Output shape:  torch.Size([32, 40, 25])
+Hidden shape:  torch.Size([1, 32, 25])
+Cell shape:  torch.Size([1, 32, 25])
+Encoding shape:  torch.Size([32, 1, 25])
+
+Before entering decoder
+Input shape:  torch.Size([32, 1, 25])
+Hidden states:  2
+Output shape:  torch.Size([32, 1, 25])
+Hidden shape:  torch.Size([1, 32, 25])
+Cell shape:  torch.Size([1, 32, 25])
+Dense outputs shape:  torch.Size([32, 3])
+```
