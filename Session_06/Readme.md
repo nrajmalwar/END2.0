@@ -3,17 +3,17 @@
 The objective to build a model with simple encoder-decoder architecture for classification and visualize the encoding and decoding vectors at each hidden step.
 
 ## Data Preprocessing
-* We use the tweets dataset that contains 1364 tweets 
+* We use the [tweets](./static/tweets.csv) dataset that contains 1364 tweets 
 * Label count 
 ```
-0    931
-1    352
-2     81
+0 (Negative) : 931
+1 (Positive) : 352
+2 (Neutral)  : 81
 ```
 * Train Test split
 ```
-Length of training data:  1159
-Length of validation data:  205
+Length of training data   :  1159
+Length of validation data :  205
 ```
 
 ## Network Design
@@ -172,6 +172,8 @@ Epoch: 15 | Epoch Time: 0m 0s
 	Train Loss: 0.599 | Train Acc: 79.01%
 	 Val. Loss: 0.608 |  Val. Acc: 81.70%
 ```
+* Model achieves validation accuracy of 81.70% in 15 epochs
+
 ## Evaluate the Encoding and Decoding vectors for the input "print the outputs"
 ### Encoder Shapes and Vectors
 ```
