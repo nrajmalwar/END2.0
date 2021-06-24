@@ -31,6 +31,6 @@ and gives the output
 
 ## [Session 7: Second Hands-on](Session_07)
 * [Part1](Session_07/Part1_SST_Classification) - Train a classification model on the Stanford Sentiment Tree (SST) Bank Dataset
-* [Part2](Part2_Seq2Seq_Datasets) - Train a Seq2Seq architecture model on the following datasets-
+* [Part2](Session_07/Part2_Seq2Seq_Datasets) - Train a Seq2Seq architecture model on the following datasets-
     1. Quora dataset
     2. Question Answer dataset
