@@ -51,10 +51,8 @@ Shape: (1458, 6)
 
 * Columns in the dataset - `'ArticleTitle', 'Question', 'Answer', 'DifficultyFromQuestioner',
        'DifficultyFromAnswerer', 'ArticleFile'`
-
 * Shape of the dataset - `(3998, 6)`
 * Shape of the dataset after NaN values are removed - `(3422, 6)`
-
 * Dataset head-
 
 | | ArticleTitle |	Question |	Answer |	DifficultyFromQuestioner |	DifficultyFromAnswerer |	ArticleFile |
@@ -66,6 +64,7 @@ Shape: (1458, 6)
 |3275 |	Korean_language |	How many verb paradigms are there in Korean? |	There are seven verb paradigms or speech level... |	easy |	easy |	data/set5/a6 |
 
 * Example of the dataset: 
+
 `{'src': ['did', 'newton', 'reject', 'the', 'church', "'s", 'doctrine', 'of', 'the', 'trinity', '?'],`
 
 `'trg': ['newton', 'may', 'have', 'rejected', 'the', 'church', "'s", 'doctrine', 'of', 'the', 'trinity', '.']}`
@@ -77,5 +76,3 @@ Shape: (1458, 6)
 ## Vocab
 * Unique tokens in source (de) vocabulary: `1979`
 * Unique tokens in target (en) vocabulary: `1280`
-
-
