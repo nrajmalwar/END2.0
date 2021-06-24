@@ -30,4 +30,7 @@ and gives the output
 * Visualize the encoding and decoding vectors at each time step
 
 ## [Session 7: Second Hands-on](Session_07)
-* Train a classification model on the Stanford Sentiment Tree (SST) Bank Dataset
+* [Part1](Session_07/Part1_SST_Classification) - Train a classification model on the Stanford Sentiment Tree (SST) Bank Dataset
+* [Part2](Part2_Seq2Seq_Datasets) - Train a Seq2Seq architecture model on the following datasets-
+    1. Quora dataset
+    2. Question Answer dataset
