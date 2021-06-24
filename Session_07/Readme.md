@@ -1,3 +1,5 @@
+Group Members: Nishad, Soma, Dinesh, Bharath
+
 # [Part 1 - SST Classification](Part1_SST_Classification)
 
 1. Data preparation for the Stanford Sentiment Analysis TreeBank
