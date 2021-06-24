@@ -24,7 +24,10 @@ and gives the output
 
 * Train a simple classification network on the IMDb dataset using LSTM
 
-## [Session 6: GRUs, Seq2Seq and Introduction to Attention Mechanism ](Session_06)
+## [Session 6: GRUs, Seq2Seq and Introduction to Attention Mechanism](Session_06)
 
-* Train a classification model for the tweets dataset using the encoder-decoder architecture
+* Train a classification model on the tweets dataset using the encoder-decoder architecture
 * Visualize the encoding and decoding vectors at each time step
+
+## [Session 7: Second Hands-on](Session_07)
+* Train a classification model on the Stanford Sentiment Tree (SST) Bank Dataset
