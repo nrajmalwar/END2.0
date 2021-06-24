@@ -17,6 +17,7 @@ For the purpose of this notebook, we do the following:
 
 1. From datasentences.txt, we take each sentence and find the corresponding "phrase ids" in dictionary.txt by checking the presence of "sentence" in "phrase".
 2. Using the "phrase ids" we retrieve the "sentiment values" from sentiment_labels.txt.
+3. Convert floating-point labels into 5 classes (0-0.2, 0.2-0.4, 0.4-0.6, 0.6-0.8, 0.8-1.0)
 
 
 ### Training and Test Dataset
