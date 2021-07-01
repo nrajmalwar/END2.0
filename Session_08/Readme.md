@@ -1,3 +1,5 @@
+Group Members: Nishad, Dinesh, Soma, Bharath
+
 # Modern way of building NLP Data Pipeline using torchtext
 The objective is to refactor the following models using the modern way of building data pipeline using torchtext instead of torchtext.legacy.
 * Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation
@@ -197,3 +199,35 @@ Epoch: 10 | Time: 1m 20s
 	 Val. Loss: 2.992 |  Val. PPL:  19.916
 ```
 * Model 2 - 
+```
+Epoch: 01 | Time: 2m 54s
+	Train Loss: 5.006 | Train PPL: 149.316
+	 Val. Loss: 4.384 |  Val. PPL:  80.120
+Epoch: 02 | Time: 2m 52s
+	Train Loss: 4.142 | Train PPL:  62.922
+	 Val. Loss: 3.775 |  Val. PPL:  43.589
+Epoch: 03 | Time: 2m 53s
+	Train Loss: 3.480 | Train PPL:  32.448
+	 Val. Loss: 3.154 |  Val. PPL:  23.422
+Epoch: 04 | Time: 2m 53s
+	Train Loss: 2.925 | Train PPL:  18.626
+	 Val. Loss: 2.858 |  Val. PPL:  17.435
+Epoch: 05 | Time: 2m 53s
+	Train Loss: 2.534 | Train PPL:  12.610
+	 Val. Loss: 2.648 |  Val. PPL:  14.119
+Epoch: 06 | Time: 2m 53s
+	Train Loss: 2.222 | Train PPL:   9.222
+	 Val. Loss: 2.587 |  Val. PPL:  13.291
+Epoch: 07 | Time: 2m 52s
+	Train Loss: 1.997 | Train PPL:   7.369
+	 Val. Loss: 2.480 |  Val. PPL:  11.944
+Epoch: 08 | Time: 2m 52s
+	Train Loss: 1.785 | Train PPL:   5.962
+	 Val. Loss: 2.554 |  Val. PPL:  12.857
+Epoch: 09 | Time: 2m 52s
+	Train Loss: 1.636 | Train PPL:   5.136
+	 Val. Loss: 2.459 |  Val. PPL:  11.694
+Epoch: 10 | Time: 2m 52s
+	Train Loss: 1.508 | Train PPL:   4.516
+	 Val. Loss: 2.557 |  Val. PPL:  12.891
+```
