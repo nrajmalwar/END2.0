@@ -34,3 +34,8 @@ and gives the output
 * [Part2](Session_07/Part2_Seq2Seq_Datasets) - Train a Seq2Seq architecture model on the following datasets-
     1. Quora dataset
     2. Question Answer dataset
+
+## [Session 8: Torchtext & Advanced Concepts](Session_08)
+* Refactor the following Seq2Seq models using the modern way of building data pipelines using torchtext (instead of torchtext.legacy)
+    1. Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation
+    2. Neural Machine Translation by Jointly Learning to Align and Translate
