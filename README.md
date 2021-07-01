@@ -35,7 +35,7 @@ and gives the output
     1. Quora dataset
     2. Question Answer dataset
 
-## [Session 8: Torchtext & Advanced Concepts](Session_08)
+## [Session 8: torchtext & Advanced Concepts](Session_08)
 * Refactor the following Seq2Seq models using the modern way of building data pipelines using torchtext (instead of torchtext.legacy)-
     1. Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation
     2. Neural Machine Translation by Jointly Learning to Align and Translate
