@@ -28,6 +28,7 @@ TGT_LANGUAGE = 'en'
 ```
 
 ## Tokenization
+* We create a dictionary of token transforms to store the tokenizer function seperately for each language
 ```python
 # SRC = Field(tokenize=tokenize_de, init_token='<sos>', eos_token='<eos>', lower=True)
 # TRG = Field(tokenize = tokenize_en, init_token='<sos>', eos_token='<eos>', lower=True)
@@ -37,6 +38,19 @@ token_transform = {}
 # Create source and target language tokenizer. Make sure to install the dependencies.
 token_transform[SRC_LANGUAGE] = get_tokenizer('spacy', language='de')
 token_transform[TGT_LANGUAGE] = get_tokenizer('spacy', language='en')
+```
+
+## Building vocab
+* yield_tokens() is a lazy function that is used to build the vocabulary
+* We store the special symbols and their indices that will be automatically used in the vocab
+* vocab_transform is a dictionary used to store the vocab of each language as key and value pairs
+* vocab_tranform is built using build_vocab_from_iterator()
+* We use the <unk> token when a token is not found in the vocabulary
+```python
+# SRC.build_vocab(train_data, min_freq = 2)
+# TRG.build_vocab(train_data, min_freq = 2)
+
+vocab_transform = {}
 
 # helper function to yield list of tokens
 def yield_tokens(data_iter: Iterable, language: str) -> List[str]:
@@ -44,17 +58,11 @@ def yield_tokens(data_iter: Iterable, language: str) -> List[str]:
     
     for data_sample in data_iter:
         yield token_transform[language](data_sample[language_index[language]])
-
+	
 # Define special symbols and indices
 UNK_IDX, PAD_IDX, BOS_IDX, EOS_IDX = 0, 1, 2, 3
 # Make sure the tokens are in order of their indices to properly insert them in vocab
 special_symbols = ['<unk>', '<pad>', '<bos>', '<eos>']
-```
-
-## Building vocab
-```python
-# SRC.build_vocab(train_data, min_freq = 2)
-# TRG.build_vocab(train_data, min_freq = 2)
 
 for ln in [SRC_LANGUAGE, TGT_LANGUAGE]:
   # Training data Iterator 
