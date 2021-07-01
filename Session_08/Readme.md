@@ -7,7 +7,7 @@ Reference link to the above models - https://github.com/bentrevett/pytorch-seq2s
 
 In the following sections, we will see a contrast between the old way of building data pipeline using torchtext.legacy that will be **commented** and the modern way using only torchtext.
 
-## Importing torchtext classes and functions
+## Import torchtext classes and functions
 ```python
 # from torchtext.legacy.datasets import Multi30k
 # from torchtext.legacy.data import Field, BucketIterator
@@ -74,8 +74,9 @@ for ln in [SRC_LANGUAGE, TGT_LANGUAGE]:
 
 ## Model Architecture
 * The code for model architecture remains the same as written by the original author. The links to the code are-
-Model 1 - [1. Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation](https://github.com/bentrevett/pytorch-seq2seq/blob/master/2%20-%20Learning%20Phrase%20Representations%20using%20RNN%20Encoder-Decoder%20for%20Statistical%20Machine%20Translation.ipynb)
-Model 2 - [2. Neural Machine Translation by Jointly Learning to Align and Translate](https://github.com/bentrevett/pytorch-seq2seq/blob/master/3%20-%20Neural%20Machine%20Translation%20by%20Jointly%20Learning%20to%20Align%20and%20Translate.ipynb)
+> Model 1 - [1. Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation](https://github.com/bentrevett/pytorch-seq2seq/blob/master/2%20-%20Learning%20Phrase%20Representations%20using%20RNN%20Encoder-Decoder%20for%20Statistical%20Machine%20Translation.ipynb)
+>
+> Model 2 - [2. Neural Machine Translation by Jointly Learning to Align and Translate](https://github.com/bentrevett/pytorch-seq2seq/blob/master/3%20-%20Neural%20Machine%20Translation%20by%20Jointly%20Learning%20to%20Align%20and%20Translate.ipynb)
 
 ## Model Object Input Dimensions
 ```python
@@ -154,7 +155,7 @@ test_dataloader = DataLoader(test_iter, batch_size=BATCH_SIZE, collate_fn=collat
 ```
 
 ## Training Logs
-1. Model 1-
+* Model 1 -
 ```
 Epoch: 01 | Time: 1m 21s
 	Train Loss: 5.018 | Train PPL: 151.165
@@ -187,3 +188,4 @@ Epoch: 10 | Time: 1m 20s
 	Train Loss: 2.344 | Train PPL:  10.426
 	 Val. Loss: 2.992 |  Val. PPL:  19.916
 ```
+* Model 2 - 
