@@ -71,6 +71,70 @@ for ln in [SRC_LANGUAGE, TGT_LANGUAGE]:
 for ln in [SRC_LANGUAGE, TGT_LANGUAGE]:
   vocab_transform[ln].set_default_index(UNK_IDX)
 ```
+
+## Model Architecture
+* The code for model architecture remains the same as written by the original author. The links to the code are-
+Model 1 - [1. Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation](https://github.com/bentrevett/pytorch-seq2seq/blob/master/2%20-%20Learning%20Phrase%20Representations%20using%20RNN%20Encoder-Decoder%20for%20Statistical%20Machine%20Translation.ipynb)
+Model 2 - [2. Neural Machine Translation by Jointly Learning to Align and Translate](https://github.com/bentrevett/pytorch-seq2seq/blob/master/3%20-%20Neural%20Machine%20Translation%20by%20Jointly%20Learning%20to%20Align%20and%20Translate.ipynb)
+
+## Model Object Input Dimensions
+```python
+# INPUT_DIM = len(SRC.vocab)
+# OUTPUT_DIM = len(TRG.vocab)
+
+INPUT_DIM = len(vocab_transform[SRC_LANGUAGE])
+OUTPUT_DIM = len(vocab_transform[TGT_LANGUAGE])
+```
+
+## Loss Function
+*  Pad token idx is already predefined in the modern way
+```python
+# TRG_PAD_IDX = TRG.vocab.stoi[TRG.pad_token]
+# criterion = nn.CrossEntropyLoss(ignore_index = TRG_PAD_IDX)
+
+loss_fn = nn.CrossEntropyLoss(ignore_index = PAD_IDX)
+```
+
+## Collate Function
+* Our data iterator yields a pair of raw strings. 
+* We need to convert these string pairs into the batched tensors that can be processed by our ``Seq2Seq`` network defined previously. 
+* Below we define our collate function that convert batch of raw strings into batch tensors thatcan be fed directly into our model. 
+```python
+from torch.nn.utils.rnn import pad_sequence
+
+# helper function to club together sequential operations
+def sequential_transforms(*transforms):
+    def func(txt_input):
+        for transform in transforms:
+            txt_input = transform(txt_input)
+        return txt_input
+    return func
+
+# function to add BOS/EOS and create tensor for input sequence indices
+def tensor_transform(token_ids: List[int]):
+    return torch.cat((torch.tensor([BOS_IDX]), 
+                      torch.tensor(token_ids), 
+                      torch.tensor([EOS_IDX])))
+
+# src and tgt language text transforms to convert raw strings into tensors indices
+text_transform = {}
+for ln in [SRC_LANGUAGE, TGT_LANGUAGE]:
+    text_transform[ln] = sequential_transforms(token_transform[ln], #Tokenization
+                                               vocab_transform[ln], #Numericalization
+                                               tensor_transform) # Add BOS/EOS and create tensor
+
+# function to collate data samples into batch tesors
+def collate_fn(batch):
+    src_batch, tgt_batch = [], []
+    for src_sample, tgt_sample in batch:
+        src_batch.append(text_transform[SRC_LANGUAGE](src_sample.rstrip("\n")))
+        tgt_batch.append(text_transform[TGT_LANGUAGE](tgt_sample.rstrip("\n")))
+
+    src_batch = pad_sequence(src_batch, padding_value=PAD_IDX)
+    tgt_batch = pad_sequence(tgt_batch, padding_value=PAD_IDX)
+    return src_batch, tgt_batch
+```
+
 ## Dataloader vs Iterators
 * We use dataloader objects instead of iterator objects in model training and evaluation. The dataloader objects will be defined later directly in the train and evaluation functions.
 ```python
@@ -78,5 +142,48 @@ for ln in [SRC_LANGUAGE, TGT_LANGUAGE]:
 #     (train_data, valid_data, test_data), 
 #     batch_size = BATCH_SIZE, 
 #     device = device)
+
+train_iter = Multi30k(split='train', language_pair=(SRC_LANGUAGE, TGT_LANGUAGE))
+train_dataloader = DataLoader(train_iter, batch_size=BATCH_SIZE, collate_fn=collate_fn)
+
+val_iter = Multi30k(split='valid', language_pair=(SRC_LANGUAGE, TGT_LANGUAGE))
+val_dataloader = DataLoader(val_iter, batch_size=BATCH_SIZE, collate_fn=collate_fn)
+
+test_iter = Multi30k(split='test', language_pair=(SRC_LANGUAGE, TGT_LANGUAGE))
+test_dataloader = DataLoader(test_iter, batch_size=BATCH_SIZE, collate_fn=collate_fn)
 ```
 
+## Training Logs
+1. Model 1-
+```
+Epoch: 01 | Time: 1m 21s
+	Train Loss: 5.018 | Train PPL: 151.165
+	 Val. Loss: 4.427 |  Val. PPL:  83.704
+Epoch: 02 | Time: 1m 21s
+	Train Loss: 4.329 | Train PPL:  75.900
+	 Val. Loss: 4.176 |  Val. PPL:  65.118
+Epoch: 03 | Time: 1m 20s
+	Train Loss: 4.064 | Train PPL:  58.234
+	 Val. Loss: 3.927 |  Val. PPL:  50.772
+Epoch: 04 | Time: 1m 21s
+	Train Loss: 3.807 | Train PPL:  45.001
+	 Val. Loss: 3.803 |  Val. PPL:  44.856
+Epoch: 05 | Time: 1m 20s
+	Train Loss: 3.529 | Train PPL:  34.106
+	 Val. Loss: 3.493 |  Val. PPL:  32.895
+Epoch: 06 | Time: 1m 20s
+	Train Loss: 3.228 | Train PPL:  25.229
+	 Val. Loss: 3.343 |  Val. PPL:  28.292
+Epoch: 07 | Time: 1m 20s
+	Train Loss: 2.999 | Train PPL:  20.067
+	 Val. Loss: 3.173 |  Val. PPL:  23.876
+Epoch: 08 | Time: 1m 20s
+	Train Loss: 2.748 | Train PPL:  15.614
+	 Val. Loss: 3.093 |  Val. PPL:  22.046
+Epoch: 09 | Time: 1m 20s
+	Train Loss: 2.539 | Train PPL:  12.662
+	 Val. Loss: 2.939 |  Val. PPL:  18.903
+Epoch: 10 | Time: 1m 20s
+	Train Loss: 2.344 | Train PPL:  10.426
+	 Val. Loss: 2.992 |  Val. PPL:  19.916
+```
