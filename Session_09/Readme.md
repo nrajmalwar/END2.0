@@ -19,6 +19,12 @@
    macro avg       0.52      0.46      0.47       205
 weighted avg       0.72      0.76      0.71       205
 ```
+
+* Observations-
+	1. The precision and recall is high for class 0.
+	2. The precision is high and recall is low for class 1.
+	3. The precision and recall is 0 for class 2. This is because the number of samples of class 2 in the test data is very less, 12 out of 205.
+	
 ## 2. BLEU Score
 * Calculated on Multi30k test dataset using maximum n-grams=4 and equal weight of 0.25 on each n-gram category -
 ```python
@@ -69,20 +75,24 @@ BLEU Score: 16.95
 BLEU Score: 17.77
 BLEU Score: 18.90
 ```
+* Observations-
+	1. 18.90 percentage of n-grams can be found in the translation
+	2. The Bleu score does not improve drastically in the last 3 epochs. This may be because the model might be predicting synonyms in the sentences, different length sentences, different arrangement of tokens etc.
+	3. We can expect the Bleu score to drop if the model is trained further and starts predicting more synonyms (than original words in the target sentence).
 
 ## 3. Perplexity
 
-In general, perplexity is a measurement of how well a probability model predicts a sample. In the context of Natural Language Processing, perplexity is one way to evaluate language models.
+* In general, perplexity is a measurement of how well a probability model predicts a sample. In the context of Natural Language Processing, perplexity is one way to evaluate language models.
 
 <img width="600" alt="image" src="./static/perplexity.png">
 
-Less entropy (or less disordered system) is favorable over more entropy. Because predictable results are preferred over randomness. This is why people say low perplexity is good and high perplexity is bad since the perplexity is the exponentiation of the entropy (and you can safely think of the concept of perplexity as entropy).
+* Less entropy (or less disordered system) is favorable over more entropy. Because predictable results are preferred over randomness. This is why people say low perplexity is good and high perplexity is bad since the perplexity is the exponentiation of the entropy (and you can safely think of the concept of perplexity as entropy).
 
 ```python
     print(f'\tTrain Loss: {train_loss:.3f} | Train PPL: {math.exp(train_loss):7.3f}')
     print(f'\t Val. Loss: {valid_loss:.3f} |  Val. PPL: {math.exp(valid_loss):7.3f}')
 ```
-* Perplexity for last 3 epochs
+* Perplexity for last 3 epochs -
 ```
 	Train Loss: 2.754 | Train PPL:  15.709
 	 Val. Loss: 2.996 |  Val. PPL:  20.015
@@ -93,6 +103,7 @@ Less entropy (or less disordered system) is favorable over more entropy. Because
 	Train Loss: 2.318 | Train PPL:  10.151
 	 Val. Loss: 2.964 |  Val. PPL:  19.373
 ```
+
 ## 4. BERT Score
 
 * BERTScore leverages the pre-trained contextual embeddings from BERT and matches words in candidate and reference sentences by cosine similarity. It has been shown to correlate with human judgment on sentence-level and system-level evaluation. Moreover, BERTScore computes precision, recall, and F1 measure, which can be useful for evaluating different language generation tasks.
@@ -146,16 +157,18 @@ def calculate_bert(model):
 
   return P.mean(), R.mean(), F1.mean()
   ```
-  * BERT Score for last 3 epochs
+  * BERT Score for last 3 epochs -
   ```
 	 BERT Score: Precision=0.897, Recall=0.894, F1 Score=0.895
 	 BERT Score: Precision=0.897, Recall=0.897, F1 Score=0.897
 	 BERT Score: Precision=0.900, Recall=0.900, F1 Score=0.900
   ```
+* Observations - 
+	1. High constant BERT scores for the last 3 epochs.
+	2. Model is performing well compared to BERT model and it is stable.
 
 ## Training logs:
 ```
-
 Epoch: 01 | Time: 0m 43s
 	Train Loss: 5.035 | Train PPL: 153.672
 	 Val. Loss: 4.450 |  Val. PPL:  85.589
@@ -201,4 +214,3 @@ Epoch: 10 | Time: 0m 42s
 	 BLEU Score: 18.90
 	 BERT Score: Precision=0.900, Recall=0.900, F1 Score=0.900
 ```
-
