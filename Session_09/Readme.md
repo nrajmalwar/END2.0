@@ -1,3 +1,22 @@
+# Evaluation Metrics
+
+## Precision, Recall and F1 Score
+* Calculated on tweets dataset
+* Confusion Matrix
+<img src="./static/confusion_matrix.png" width="300">
+
+* Precision, Recall and F1 Score
+```
+		precision    recall  f1-score   support
+
+           0       0.75      0.97      0.84       134
+           1       0.81      0.42      0.56        59
+           2       0.00      0.00      0.00        12
+
+    accuracy                           0.76       205
+   macro avg       0.52      0.46      0.47       205
+weighted avg       0.72      0.76      0.71       205
+```
 
 ## Perplexity
 
