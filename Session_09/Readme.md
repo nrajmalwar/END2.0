@@ -4,10 +4,10 @@
 <img src="./static/precision_recall_f1.png" width="400">
 
 * Calculated on tweets dataset
-* Confusion Matrix
+* Confusion Matrix -
 <img src="./static/confusion_matrix.png" width="300">
 
-* Precision, Recall and F1 Score
+* Precision, Recall and F1 Score -
 ```
 		precision    recall  f1-score   support
 
@@ -20,7 +20,7 @@
 weighted avg       0.72      0.76      0.71       205
 ```
 ## 2. BLEU Score
-* Calculated on Multi30k test dataset using maximum n-grams=4 and equal weight of 0.25 on each n-gram category
+* Calculated on Multi30k test dataset using maximum n-grams=4 and equal weight of 0.25 on each n-gram category -
 ```python
 from torchtext.data.metrics import bleu_score
 
@@ -63,7 +63,7 @@ def calculate_bleu(model):
 
   return bleu_score(output_sentences, tgt_sentences)
 ```
-* BLEU scores for last 3 epochs
+* BLEU scores for last 3 epochs -
 ```
 BLEU Score: 16.95
 BLEU Score: 17.77
@@ -82,7 +82,17 @@ Less entropy (or less disordered system) is favorable over more entropy. Because
     print(f'\tTrain Loss: {train_loss:.3f} | Train PPL: {math.exp(train_loss):7.3f}')
     print(f'\t Val. Loss: {valid_loss:.3f} |  Val. PPL: {math.exp(valid_loss):7.3f}')
 ```
+* Perplexity for last 3 epochs
+```
+	Train Loss: 2.754 | Train PPL:  15.709
+	 Val. Loss: 2.996 |  Val. PPL:  20.015
 
+	Train Loss: 2.534 | Train PPL:  12.600
+	 Val. Loss: 2.951 |  Val. PPL:  19.127
+
+	Train Loss: 2.318 | Train PPL:  10.151
+	 Val. Loss: 2.964 |  Val. PPL:  19.373
+```
 ## 4. BERT Score
 
 * BERTScore leverages the pre-trained contextual embeddings from BERT and matches words in candidate and reference sentences by cosine similarity. It has been shown to correlate with human judgment on sentence-level and system-level evaluation. Moreover, BERTScore computes precision, recall, and F1 measure, which can be useful for evaluating different language generation tasks.
@@ -135,6 +145,12 @@ def calculate_bert(model):
   P, R, F1 = score(output_sentences, tgt_sentences, lang="en", verbose=False)
 
   return P.mean(), R.mean(), F1.mean()
+  ```
+  * BERT Score for last 3 epochs
+  ```
+	 BERT Score: Precision=0.897, Recall=0.894, F1 Score=0.895
+	 BERT Score: Precision=0.897, Recall=0.897, F1 Score=0.897
+	 BERT Score: Precision=0.900, Recall=0.900, F1 Score=0.900
   ```
 
 ## Training logs:
