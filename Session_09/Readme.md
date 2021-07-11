@@ -3,7 +3,7 @@
 
 In general, perplexity is a measurement of how well a probability model predicts a sample. In the context of Natural Language Processing, perplexity is one way to evaluate language models.
 
-<img width="1000" alt="image" src="perplexity.png">
+<img width="1000" alt="image" src="./static/perplexity.png">
 
 
 Less entropy (or less disordered system) is favorable over more entropy. Because predictable results are preferred over randomness. This is why people say low perplexity is good and high perplexity is bad since the perplexity is the exponentiation of the entropy (and you can safely think of the concept of perplexity as entropy).
@@ -55,5 +55,4 @@ Epoch: 10 | Time: 0m 42s
 	 BLEU Score: 18.90
 	 BERT Score: Precision=0.900, Recall=0.900, F1 Score=0.900
 ```
-
 
