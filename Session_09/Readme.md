@@ -104,6 +104,9 @@ BLEU Score: 18.90
 	Train Loss: 2.318 | Train PPL:  10.151
 	 Val. Loss: 2.964 |  Val. PPL:  19.373
 ```
+* Observations - 
+	1. Perplexity can be compared relatively on a case to case basis since it depends on the loss value.
+	2. For this model, the perplexity is low. Further improvements in the model would result in lower perplexity by comparison.
 
 ## 4. BERT Score
 
