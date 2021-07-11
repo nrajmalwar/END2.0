@@ -83,6 +83,10 @@ Less entropy (or less disordered system) is favorable over more entropy. Because
 
 ## 4. BERT Score
 
+* BERTScore leverages the pre-trained contextual embeddings from BERT and matches words in candidate and reference sentences by cosine similarity. It has been shown to correlate with human judgment on sentence-level and system-level evaluation. Moreover, BERTScore computes precision, recall, and F1 measure, which can be useful for evaluating different language generation tasks.
+
+<img src="./static/bert_score.png" width="400">
+
 ## Training logs:
 ```
 
