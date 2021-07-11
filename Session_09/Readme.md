@@ -1,7 +1,8 @@
+Group Members: Nishad, Dinesh, Soma, Bharath
 # Evaluation Metrics
 
 ## 1. Precision, Recall and F1 Score
-<img src="./static/precision_recall_f1.png" width="400">
+<img src="./static/precision_recall_f1.png" width="350">
 
 * Calculated on tweets dataset
 * Confusion Matrix -
@@ -84,7 +85,7 @@ BLEU Score: 18.90
 
 * In general, perplexity is a measurement of how well a probability model predicts a sample. In the context of Natural Language Processing, perplexity is one way to evaluate language models.
 
-<img width="600" alt="image" src="./static/perplexity.png">
+<img width="450" alt="image" src="./static/perplexity.png">
 
 * Less entropy (or less disordered system) is favorable over more entropy. Because predictable results are preferred over randomness. This is why people say low perplexity is good and high perplexity is bad since the perplexity is the exponentiation of the entropy (and you can safely think of the concept of perplexity as entropy).
 
@@ -108,7 +109,7 @@ BLEU Score: 18.90
 
 * BERTScore leverages the pre-trained contextual embeddings from BERT and matches words in candidate and reference sentences by cosine similarity. It has been shown to correlate with human judgment on sentence-level and system-level evaluation. Moreover, BERTScore computes precision, recall, and F1 measure, which can be useful for evaluating different language generation tasks.
 
-<img src="./static/bert_score.png" width="1000">
+<img src="./static/bert_score.png" width="800">
 
 ```python
 from bert_score import score
