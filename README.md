@@ -37,8 +37,8 @@ and gives the output
 
 ## [Session 8: torchtext & Advanced Concepts](Session_08)
 * Refactor the following Seq2Seq models using the modern way of building data pipelines using torchtext (instead of torchtext.legacy)-
-    1. Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation
-    2. Neural Machine Translation by Jointly Learning to Align and Translate
+    1. [Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation](Session_08/2_Learning_Phrase_Representations_using_RNN_Encoder_Decoder_for_Statistical_Machine_Translation.ipynb)
+    2. [Neural Machine Translation by Jointly Learning to Align and Translate](https://github.com/nrajmalwar/END2.0/blob/main/Session_08/3_Neural_Machine_Translation_by_Jointly_Learning_to_Align_and_Translate.ipynb)
 
 ## [Session 9: Learning Rates and Evaluation Metrics - Part 1](Session_09)
 * Implement the following evaluation metrics-
