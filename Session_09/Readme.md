@@ -73,7 +73,9 @@ BLEU Score: 18.90
 ## 3. Perplexity
 
 In general, perplexity is a measurement of how well a probability model predicts a sample. In the context of Natural Language Processing, perplexity is one way to evaluate language models.
+
 <img width="600" alt="image" src="./static/perplexity.png">
+
 Less entropy (or less disordered system) is favorable over more entropy. Because predictable results are preferred over randomness. This is why people say low perplexity is good and high perplexity is bad since the perplexity is the exponentiation of the entropy (and you can safely think of the concept of perplexity as entropy).
 
 ```python
@@ -85,7 +87,55 @@ Less entropy (or less disordered system) is favorable over more entropy. Because
 
 * BERTScore leverages the pre-trained contextual embeddings from BERT and matches words in candidate and reference sentences by cosine similarity. It has been shown to correlate with human judgment on sentence-level and system-level evaluation. Moreover, BERTScore computes precision, recall, and F1 measure, which can be useful for evaluating different language generation tasks.
 
-<img src="./static/bert_score.png" width="400">
+<img src="./static/bert_score.png" width="1000">
+
+```python
+from bert_score import score
+
+def calculate_bert(model):
+  model.eval()
+  losses = 0
+
+  # calculate score on test data
+  test_iter = Multi30k(split='test', language_pair=(SRC_LANGUAGE, TGT_LANGUAGE))
+  test_dataloader = DataLoader(test_iter, batch_size=BATCH_SIZE, collate_fn=collate_fn)
+
+  tgt_sentences = []
+  output_sentences = []
+
+  for src, tgt in test_dataloader:
+    src = src.to(device)
+    tgt = tgt.to(device)
+
+    output = model(src, tgt)
+    output = torch.argmax(output, dim=2)
+
+    # transpose to have batch first, size=[batch_size, text_length]
+    tgt_list = torch.transpose(tgt, 1, 0).tolist()
+    output_list = torch.transpose(output, 1, 0).tolist()
+
+    for x, y in zip(tgt_list, output_list):
+      # change integer to strings
+      tgt_line = vocab_transform[TGT_LANGUAGE].lookup_tokens(x)
+      # remove first token and truncate at first <eos> token found
+      tgt_line = tgt_line[1:tgt_line.index("<eos>")]
+      # create a single string for each line. This is the requirement for BERT score
+      tgt_line = " ".join(tgt_line)
+
+      output_line = vocab_transform[TGT_LANGUAGE].lookup_tokens(y)
+      # only if <eos> is found, we truncate the line at that point
+      if "<eos>" in output_line:
+        output_line = output_line[1:output_line.index("<eos>")]
+      output_line = " ".join(output_line)
+
+      # collect all the lines in a list
+      tgt_sentences.append([tgt_line])
+      output_sentences.append(output_line)
+
+  P, R, F1 = score(output_sentences, tgt_sentences, lang="en", verbose=False)
+
+  return P.mean(), R.mean(), F1.mean()
+  ```
 
 ## Training logs:
 ```
