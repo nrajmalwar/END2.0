@@ -1,6 +1,6 @@
 # Evaluation Metrics
 
-## Precision, Recall and F1 Score
+## 1. Precision, Recall and F1 Score
 <img src="./static/precision_recall_f1.png" width="400">
 
 * Calculated on tweets dataset
@@ -19,18 +19,73 @@
    macro avg       0.52      0.46      0.47       205
 weighted avg       0.72      0.76      0.71       205
 ```
+## 2. BLEU Score
+* Calculated on Multi30k test dataset using maximum n-grams=4 and equal weight of 0.25 on each n-gram category
+```python
+from torchtext.data.metrics import bleu_score
 
-## Perplexity
+def calculate_bleu(model):
+  model.eval()
+  losses = 0
+
+  # calculate score on test data
+  test_iter = Multi30k(split='test', language_pair=(SRC_LANGUAGE, TGT_LANGUAGE))
+  test_dataloader = DataLoader(test_iter, batch_size=BATCH_SIZE, collate_fn=collate_fn)
+
+  tgt_sentences = []
+  output_sentences = []
+
+  for src, tgt in test_dataloader:
+      src = src.to(device)
+      tgt = tgt.to(device)
+
+      output = model(src, tgt)
+      output = torch.argmax(output, dim=2)
+
+      # transpose to have batch first, size=[batch_size, text_length]
+      tgt_list = torch.transpose(tgt, 1, 0).tolist()
+      output_list = torch.transpose(output, 1, 0).tolist()
+
+      for x, y in zip(tgt_list, output_list):
+        # change integer to strings
+        tgt_line = vocab_transform[TGT_LANGUAGE].lookup_tokens(x)
+        # remove first token and truncate at first <eos> token found
+        tgt_line = tgt_line[1:tgt_line.index("<eos>")]
+
+        output_line = vocab_transform[TGT_LANGUAGE].lookup_tokens(y)
+        # only if <eos> is found, we truncate the line at that point
+        if "<eos>" in output_line:
+          output_line = output_line[1:output_line.index("<eos>")]
+
+        # collect all the lines in a list
+        tgt_sentences.append([tgt_line])
+        output_sentences.append(output_line)
+
+  return bleu_score(output_sentences, tgt_sentences)
+```
+* BLEU scores for last 3 epochs
+```
+BLEU Score: 16.95
+BLEU Score: 17.77
+BLEU Score: 18.90
+```
+
+## 3. Perplexity
 
 In general, perplexity is a measurement of how well a probability model predicts a sample. In the context of Natural Language Processing, perplexity is one way to evaluate language models.
-
 <img width="600" alt="image" src="./static/perplexity.png">
-
-
 Less entropy (or less disordered system) is favorable over more entropy. Because predictable results are preferred over randomness. This is why people say low perplexity is good and high perplexity is bad since the perplexity is the exponentiation of the entropy (and you can safely think of the concept of perplexity as entropy).
+
+```python
+    print(f'\tTrain Loss: {train_loss:.3f} | Train PPL: {math.exp(train_loss):7.3f}')
+    print(f'\t Val. Loss: {valid_loss:.3f} |  Val. PPL: {math.exp(valid_loss):7.3f}')
+```
+
+## 4. BERT Score
 
 ## Training logs:
 ```
+
 Epoch: 01 | Time: 0m 43s
 	Train Loss: 5.035 | Train PPL: 153.672
 	 Val. Loss: 4.450 |  Val. PPL:  85.589
