@@ -1,6 +1,8 @@
 # Evaluation Metrics
 
 ## Precision, Recall and F1 Score
+<img src="./static/precision_recall_f1.png" width="400">
+
 * Calculated on tweets dataset
 * Confusion Matrix
 <img src="./static/confusion_matrix.png" width="300">
