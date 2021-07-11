@@ -39,3 +39,10 @@ and gives the output
 * Refactor the following Seq2Seq models using the modern way of building data pipelines using torchtext (instead of torchtext.legacy)-
     1. Learning Phrase Representations using RNN Encoder-Decoder for Statistical Machine Translation
     2. Neural Machine Translation by Jointly Learning to Align and Translate
+
+## [Session 9: Learning Rates and Evaluation Metrics - Part 1](Session_09)
+* Implement the following evaluation metrics-
+    1. Recall, Precision, and F1 Score
+    2. BLEU score
+    3. Perplexity
+    4. BERTScore
