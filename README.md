@@ -42,7 +42,9 @@ and gives the output
 
 ## [Session 9: Learning Rates and Evaluation Metrics - Part 1](Session_09)
 * Implement the following evaluation metrics-
-    1. Recall, Precision, and F1 Score
-    2. BLEU score
-    3. Perplexity
-    4. BERTScore
+1. [For classification task (tweets dataset)](Session_09/Precision_Recall_F1.ipynb) -
+    i. Precision, Recall and F1 Score
+2. [For language translation Seq2Seq model (Multi30k dataset)](Session_09/Bleu_Perplexity_Bert_Score.ipynb) -
+    ii. BLEU score
+    iii. Perplexity
+    iv. BERTScore
